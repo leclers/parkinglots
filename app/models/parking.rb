@@ -1,5 +1,5 @@
 class Parking < ApplicationRecord
-  belongs_to :users, dependent: :destroy
+  belongs_to :user
 
   validates :address, presence: true
   validates :start_time, presence: true
