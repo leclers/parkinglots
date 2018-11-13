@@ -48,4 +48,8 @@ parkings = Parking.all
   })
 end
 
+Parking.all.each do |parking|
+  Parking.create({
+    photo: Faker::Placeholdit.image #=> "http://placehold.it/300x300.png/000"
+  })
 puts "all finished, cool"
