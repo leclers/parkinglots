@@ -4,10 +4,13 @@
   <div class="row">
     <% @parkings.each do |parking| %>
       <div class="col-xs-12 col-md-6 col-lg-4">
+        <%= link_to parking_path(parking) do %>
         <div class="parking-card">
         <%= parking.description %>
         <%= parking.address %>
+        <%= parking.city %>
         </div>
+        <% end %>
       </div>
     <% end %>
   </div>
