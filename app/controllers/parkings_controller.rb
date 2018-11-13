@@ -12,14 +12,19 @@ class ParkingsController < ApplicationController
   end
 
   def new
-    @parking = current_user.parkings.build
+    # @parking = current_user.parkings.build
+    @parking = Parking.new
   end
 
   def create
-    @parking = current_user.parkings.build(parking_params)
+    # @parking = current_user.parkings.build(parking_params)
+    @parking = Parking.new(parking_params)
+    @parking.user = current_user
+    @parking.save
+
     if @parking.save
       # flash[:success] = "Success! Rental space was created."
-      redirect_to action: 'index'
+      redirect_to parkings_path
     else
       # flash[:error] = "Woopsy, please verify your information is correct"
       render :new
@@ -29,7 +34,7 @@ class ParkingsController < ApplicationController
   def edit
   end
 
-  protected
+  private
 
   def parking_params
     params.require(:parking).permit(:address, :description, :start_time, :finish_time, :price)
