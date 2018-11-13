@@ -1,19 +1,27 @@
 <div class="banner">
-  <p>the banner goes here</p>
+  <p>search a cool parking spot</p>
 </div>
 
 <div class="container">
   <div class="row">
 
-    <% @parkings.each do |parking| %>
-    <div class="col-xs-12 col-md-6 col-lg-4 parking-card">
-      <div class="card-description">
-        <%= parking.address %>
-      </div>
+    <h3>start exploring the spots</h3>
 
-    </div>
+    <% @home_parkings.each do |parking| %>
+      <div class="col-xs-12 col-md-6 col-lg-4 parking-card">
+        <div class="card-header">
+          <%= parking.city %>
+          <%= parking.user.email %>
+        </div>
+      </div>
     <% end %>
 
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <h3>we will add something here</h3>
   </div>
 </div>
 
