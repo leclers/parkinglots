@@ -5,9 +5,9 @@
 <!-- links to form: New parking Space Proposal -->
 <p><%= render "form" %></p>
 
+<% else %>
 <!-- a user can go back to Home page without adding a parking space -->
 <!-- can change link path as needed -->
-<% else %>
 <%= link_to "Login", new_user_session_path %>
 <% end %>
 
