@@ -26,11 +26,26 @@ User.all.each do |user|
   3.times do
     Parking.create({
     user_id: user.id,
-    address: Faker::Address.full_address,
+    address: Faker::Address.street_address,
+    city: Faker::HarryPotter.location,
+    zip_code: Faker::Address.zip_code,
     start_time: Faker::Time.between(DateTime.now - 10, DateTime.now + 10),
     finish_time: Faker::Time.between(DateTime.now, DateTime.now + 10)
   })
   end
+end
+
+users = User.all
+parkings = Parking.all
+
+
+4.times do
+  Booking.create({
+    user_id: users.sample(1)[0].id,
+    parking_id: parkings.sample(1)[0].id,
+    start_time: Faker::Time.between(DateTime.now - 10, DateTime.now + 10),
+    finish_time: Faker::Time.between(DateTime.now, DateTime.now + 10)
+  })
 end
 
 puts "all finished, cool"

@@ -1,0 +1,14 @@
+/* ------ COMPONENTS : FOOTER ------ */
+
+#footer {
+  padding-bottom: 24px;
+  text-align: center;
+
+  p span{
+    border-top: $border-light--slate-gray;
+    border-bottom: $border-light--slate-gray;
+    font-size: 1.4rem;
+    padding: 6px;
+  }
+
+}
