@@ -1,12 +1,12 @@
 <!-- New parking Space Proposal -->
-
-
-<%= simple_form_for(@parking) do |f| %>
-    <%= f.input :address %>
-    <%= f.input :description %>
-    <%= f.input :start_time %>
-    <%= f.input :finish_time %>
-    <%= f.input :price %>
-
-    <%= f.submit class: 'btn btn-primary' %>
-<% end  %>
+<!-- will work on div/ card layout tuesday.... -->
+  <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+    <%= simple_form_for(@parking) do |f| %>
+        <%= f.input :address %>
+        <%= f.input :description %>
+        <%= f.input :price %>
+        <!-- adding start/finish times makes layout look strange -->
+        <%= f.submit class: 'btn btn-primary' %>
+    <% end  %>
+    <%= link_to "Back", root_path, class:'btn btn-primary' %>
+  </div>
