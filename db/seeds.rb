@@ -40,7 +40,7 @@ parkings = Parking.all
 
 
 4.times do
-  Booking.new({
+  Booking.create({
     user_id: users.sample(1)[0].id,
     parking_id: parkings.sample(1)[0].id,
     start_time: Faker::Time.between(DateTime.now - 10, DateTime.now + 10),
