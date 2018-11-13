@@ -5,8 +5,11 @@
         <%= f.input :address %>
         <%= f.input :description %>
         <%= f.input :price %>
+        <%= f.input :start_time, as: :datepicker %>
+        <%= f.input :finish_time, as: :datepicker %>
+
         <!-- adding start/finish times makes layout look strange -->
         <%= f.submit class: 'btn btn-primary' %>
-    <% end  %>
+    <% end %>
     <%= link_to "Back", root_path, class:'btn btn-primary' %>
   </div>

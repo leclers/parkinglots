@@ -14,17 +14,16 @@ class ParkingsController < ApplicationController
   def create
     @parking = current_user.parkings.build(parking_params)
     if @parking.save
-      raise
       # flash[:success] = "Success! Rental space was created."
       redirect_to action: 'index'
     else
       # flash[:error] = "Woopsy, please verify your information is correct"
-      redirect_to action: 'index'
+      render :new
     end
   end
 
   def show
-    raise
+
   end
 
   def edit
