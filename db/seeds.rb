@@ -52,4 +52,18 @@ Parking.all.each do |parking|
   Parking.create({
     photo: Faker::Placeholdit.image #=> "http://placehold.it/300x300.png/000"
   })
+end
+
+Parking.all.each do |parking|
+  Parking.create({
+    description: Faker::Parking.all.each do |parking|
+  Parking.create({
+    photo: Faker::Placeholdit.image #=> "http://placehold.it/300x300.png/000"
+  })
+end #=> "http://placehold.it/300x300.png/000"
+  })
+end
+
+
+
 puts "all finished, cool"
