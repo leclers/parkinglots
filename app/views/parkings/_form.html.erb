@@ -1,0 +1,12 @@
+<!-- New parking Space Proposal -->
+
+
+<%= simple_form_for(@parking) do |f| %>
+    <%= f.input :address %>
+    <%= f.input :description %>
+    <%= f.input :start_time %>
+    <%= f.input :finish_time %>
+    <%= f.input :price %>
+
+    <%= f.submit class: 'btn btn-primary' %>
+<% end  %>
