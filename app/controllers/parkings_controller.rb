@@ -8,8 +8,7 @@ class ParkingsController < ApplicationController
   end
 
   def show
-  @parking = Parking.find(params[:id])
-
+    @parking = Parking.find(params[:id])
   end
 
   def new
@@ -27,14 +26,11 @@ class ParkingsController < ApplicationController
     end
   end
 
-  def show
-
-  end
-
   def edit
   end
 
   protected
+
   def parking_params
     params.require(:parking).permit(:address, :description, :start_time, :finish_time, :price)
   end
