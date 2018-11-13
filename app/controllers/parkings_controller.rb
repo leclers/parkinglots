@@ -4,7 +4,12 @@ class ParkingsController < ApplicationController
   # current_user OR user_id
   # USE A PUNDIT PUNDIT PUNDIT
   def index
-    @parkings = Parking.all
+
+  end
+
+  def show
+  @parking = Parking.find(params[:id])
+
   end
 
   def new
