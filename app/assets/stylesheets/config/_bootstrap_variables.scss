@@ -11,11 +11,12 @@ $font-size-base: 16px;
 
 // Colors
 $gray-base:       $gray;
-$brand-primary:   $blue;
-$brand-success:   $green;
-$brand-info:      $yellow;
-$brand-danger:    $red;
-$brand-warning:   $orange;
+
+$brand-primary:   $slate-gray;
+$brand-success:   $dark-blue;
+$brand-info:      $slate-gray;
+$brand-danger:    $pastel-red;
+$brand-warning:   $pastel-red;
 
 // Buttons & inputs' radius
 $border-radius-base:  2px;
@@ -51,3 +52,12 @@ $border-radius-small: 2px;
 }
 
 // Override other variables below!
+
+// alerts & notices
+
+$state-success-border: $dark-blue;
+$state-info-border: $slate-gray;
+$state-warning-border: $pastel-red;
+$state-danger-border: $pastel-red;
+
+$alert-border-radius: 0px;
