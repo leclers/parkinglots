@@ -30,7 +30,9 @@ User.all.each do |user|
     city: Faker::HarryPotter.location,
     zip_code: Faker::Address.zip_code,
     start_time: Faker::Time.between(DateTime.now - 10, DateTime.now + 10),
-    finish_time: Faker::Time.between(DateTime.now, DateTime.now + 10)
+    finish_time: Faker::Time.between(DateTime.now, DateTime.now + 10),
+    photo: Faker::Placeholdit.image, #=> "http://placehold.it/300x300.png/000"
+    description: Faker::Lorem.paragraphs
   })
   end
 end
@@ -38,29 +40,12 @@ end
 users = User.all
 parkings = Parking.all
 
-
 4.times do
   Booking.create({
     user_id: users.sample(1)[0].id,
     parking_id: parkings.sample(1)[0].id,
     start_time: Faker::Time.between(DateTime.now - 10, DateTime.now + 10),
     finish_time: Faker::Time.between(DateTime.now, DateTime.now + 10)
-  })
-end
-
-Parking.all.each do |parking|
-  Parking.create({
-    photo: Faker::Placeholdit.image #=> "http://placehold.it/300x300.png/000"
-  })
-end
-
-Parking.all.each do |parking|
-  Parking.create({
-    description: Faker::Parking.all.each do |parking|
-  Parking.create({
-    photo: Faker::Placeholdit.image #=> "http://placehold.it/300x300.png/000"
-  })
-end #=> "http://placehold.it/300x300.png/000"
   })
 end
 
