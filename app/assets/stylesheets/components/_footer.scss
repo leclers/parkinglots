@@ -1,13 +1,14 @@
 /* ------ COMPONENTS : FOOTER ------ */
 
 #footer {
-  // position: absolute;
-  bottom:0;
-  left:0;
-  right: 0;
+  padding-bottom: 24px;
+  text-align: center;
 
-  p {
-    font-size: 1rem;
+  p span{
+    border-top: $border-light--slate-gray;
+    border-bottom: $border-light--slate-gray;
+    font-size: 1.4rem;
+    padding: 6px;
   }
 
 }
