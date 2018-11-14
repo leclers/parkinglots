@@ -5,7 +5,7 @@
   <div class="parking-description">
 
     <div class="main-details">
-      <h3>beautiful spot in
+      <h3>beautiful spot in<br>
         <% if @parking.city.nil? %>
           Montréal
         <% else %>
@@ -17,9 +17,23 @@
     </div>
 
     <div class="parking-dispo">
-     <%= @parking.start_time %>
-     <%= @parking.finish_time %>
+      <p>this place is available between</p>
+      <p><%= @parking.start_time.year %>/<%= @parking.start_time.month %>/<%= @parking.start_time.day %> and
+      <%= @parking.finish_time.year %>/<%= @parking.finish_time.month %>/<%= @parking.finish_time.day %></p>
     </div>
+
+    <div class="parking-actions">
+      <%= link_to 'edit my spot', '#', class: 'btn btn-primary' %>
+      <%= link_to 'delete my spot', '#', class: 'btn btn-info' %>
+    </div>
+
+    <div class="parking-actions">
+      <%= link_to 'see all the bookings for this spot', '#', class: 'btn btn-info' %>
+
+    </div>
+
+
+
   </div>
 
 
