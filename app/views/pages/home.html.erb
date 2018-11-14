@@ -1,14 +1,14 @@
 <div class="banner">
-  <p class="accent-text">tired of spending hours looking for a parking spot?</p>
-  <p>search a cool parking spot</p>
+  <div class="banner-content">
+    <h3>tired of spending hours looking for a parking spot?</h3>
+    <h6><span class="accent-header">we have one for you!</span></h6>
+    <%= simple_form_for(@parking) do |f| %>
 
-  <%= simple_form_for(@parking) do |f| %>
+      <%= f.input :city, placeholder: 'where is your car?'%>
+      <%= f.submit value: 'search', class: 'btn btn-primary' %>
 
-    <%= f.input :city, placeholder: 'city'%>
-    <%= f.submit value: 'search' %>
-
-  <% end %>
-
+    <% end %>
+  </div>
 </div>
 
 
@@ -50,8 +50,8 @@
       <div class="parkings-messages">
         <div class="col-xs-12 col-md-8 col-md-offset-2">
           <h3>don't let your parking space get lonely</h3>
-          <h6><span class="accent-header">rent it out</span></h6>
-          <%= link_to 'add your parking spot', new_parking_path, class: 'btn btn-primary btn-block' %>
+          <h6><span class="accent-header">rent it out now!</span></h6>
+          <%= link_to 'add your parking spot', new_parking_path, class: 'btn btn-primary btn-block btn-cta' %>
         </div>
       </div>
 
