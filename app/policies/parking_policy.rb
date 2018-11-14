@@ -17,8 +17,16 @@ class ParkingPolicy < ApplicationPolicy
     true
   end
 
-  def edit
-    if user == current_user
+  def edit?
+    if record.user == user
+      true
+    else
+      false
+    end
+  end
+
+  def destroy?
+    if record.user == user
       true
     else
       false
