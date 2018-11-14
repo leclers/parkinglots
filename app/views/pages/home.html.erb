@@ -2,13 +2,12 @@
   <p class="accent-text">tired of spending hours looking for a parking spot?</p>
   <p>search a cool parking spot</p>
 
-
   <%= simple_form_for(@parking) do |f| %>
 
-  <%= f.input :city, placeholder: 'city'%>
-  <%= f.submit value: 'search' %>
+    <%= f.input :city, placeholder: 'city'%>
+    <%= f.submit value: 'search' %>
 
-<% end %>
+  <% end %>
 
 </div>
 
@@ -19,13 +18,17 @@
     <h6>isn't it great?</h6>
 
     <% @home_parkings.each do |parking| %>
-      <div class="col-xs-12 col-md-6 col-lg-4 parking-card">
-        <div class="card-header">
-          <%= parking.city %>
-          <%= parking.user.email %>
-        </div>
+      <div class="col-xs-12 col-md-6 col-lg-4">
+        <%= link_to parking_path(parking) do %>
+          <div class="parking-card">
+            <div class="card-header">
+              <%= parking.city %>
+              <%= parking.user.email %>
+            </div>
+          </div>
+        <% end %> <!-- end of link -->
       </div>
-    <% end %>
+    <% end %> <!-- end of loop in the parkings -->
 
   </div>
 </div>
