@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   end
   resources :bookings, only: [:index, :show, :update, :edit]
 
-  get '/about', to: 'pages#about'
+  get '/test', to: 'pages#test'
 end
