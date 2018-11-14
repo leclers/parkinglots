@@ -8,11 +8,13 @@
     <h3>start exploring the spots</h3>
 
     <% @home_parkings.each do |parking| %>
-      <div class="col-xs-12 col-md-6 col-lg-4 parking-card">
+      <div class="col-xs-12 col-md-6 col-lg-4">
+        <%= link_to parking_path(parking) do %>
         <div class="card-header">
           <%= parking.city %>
           <%= parking.user.email %>
         </div>
+        <% end %>
       </div>
     <% end %>
 
