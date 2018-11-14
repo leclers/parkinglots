@@ -4,8 +4,8 @@ class ParkingsController < ApplicationController
   # current_user OR user_id
   # USE A PUNDIT PUNDIT PUNDIT
   def index
-    @parkings = policy_scope(Parking)
-    @parkings = Parking.where.not(latitude: nil, longitude: nil)
+    @parkings = policy_scope(Parking).where.not(latitude: nil, longitude: nil)
+    # @parkings = Parking.
 
     @markers = @parkings.map do |parking|
       {
@@ -33,7 +33,7 @@ class ParkingsController < ApplicationController
     authorize @parking
 
     if @parking.save
-      flash[:notice] = "great, you have successfully uploaded your parking spot"
+      flash[:notice] = "great, you have successfully uploaded your parking space"
       redirect_to parking_path(@parking)
     else
       flash[:alert] = "oops, something is wrong, dude."
