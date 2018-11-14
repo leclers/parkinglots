@@ -31,7 +31,7 @@ class ParkingsController < ApplicationController
       render :new
     end
   end
-  
+
   def edit
   end
 
