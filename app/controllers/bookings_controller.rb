@@ -1,16 +1,17 @@
 class BookingsController < ApplicationController
   def index
+    @bookings = booking_policy(Booking)
   end
 
   def show
   end
 
   def new
+    @booking = Booking.new
   end
 
   def create
     @parking = Parking.find(params[:parking_id])
-    raise
     @booking = Booking.new(booking_params)
     @booking.parking = @parking
 
