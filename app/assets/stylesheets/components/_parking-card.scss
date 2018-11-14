@@ -1,9 +1,21 @@
 /* ------ COMPONENTS : PARKING CARD ------ */
 
 .parking-card {
-  // background: linear-gradient(rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.6) 50%),url(http://bit.ly/2Dis4dl);
+  background: linear-gradient(rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.6) 50%),url(http://bit.ly/2Dis4dl);
   background-size: cover;
   height: 220px;
   padding:15px;
   margin-bottom: 20px;
+  position: relative;
+
+}
+
+.card-header {
+  position: absolute;
+  top: 4%;
+  left: 4%;
+  h6 {
+    text-transform: uppercase;
+    font-size: 2rem;
+  }
 }

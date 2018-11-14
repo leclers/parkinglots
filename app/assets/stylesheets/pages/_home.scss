@@ -11,9 +11,26 @@
   }
 }
 
-#parkings-header {
+.parkings-messages {
+  position:relative;
   text-align: center;
   h3 {
     text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  h6 {
+    margin-top: 0px;
+    text-align: center;
+  }
+}
+
+
+#cta-new-parking {
+  background: $ash-gray;
+  padding: 40px;
+
+  .parkings-messages h3 {
+    color: white;
   }
 }

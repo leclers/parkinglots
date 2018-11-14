@@ -15,10 +15,16 @@
 <div class="container">
   <div class="row">
 
-    <div id="parkings-header">
-      <h3>here are some super cool parking spots you could have</h3>
-      <h6 class="accent-header">isn't it great?</h6>
+    <div class="parkings-messages">
+      <div class="col-xs-12 col-md-10 col-md-offset-1">
+        <h3>here are some super cool parking spots you could have</h3>
+        <h6><span class="accent-header">isn't it great?</span></h6>
+      </div>
     </div>
+
+  </div>
+
+  <div class="row">
 
     <% @home_parkings.each do |parking| %>
       <div class="col-xs-12 col-md-6 col-lg-4">
@@ -27,7 +33,6 @@
             <div class="card-header">
               <h6><%= parking.city %></h6>
               <p><%= parking.user.email %></p>
-
             </div>
           </div>
         <% end %> <!-- end of link -->
@@ -37,13 +42,22 @@
   </div>
 </div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-md-6 col-md-offset-3">
-      <h3>don't let your parking space get lonely</h3>
-      <h6 class="span accent-headings">rent it out</h6>
-      <%= link_to 'add your parking spot', new_parking_path, class: 'btn btn-primary btn-block' %>
+<div id="cta-new-parking">
+
+  <div class="container">
+    <div class="row">
+
+      <div class="parkings-messages">
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+          <h3>don't let your parking space get lonely</h3>
+          <h6><span class="accent-header">rent it out</span></h6>
+          <%= link_to 'add your parking spot', new_parking_path, class: 'btn btn-primary btn-block' %>
+        </div>
+      </div>
+
     </div>
   </div>
+
 </div>
+
 
