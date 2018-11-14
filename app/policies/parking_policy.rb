@@ -6,11 +6,11 @@ class ParkingPolicy < ApplicationPolicy
   end
 
   def show?
-    return true
+    true
   end
 
   def create?
-    return true
+    true
   end
 
   def update?
@@ -18,18 +18,10 @@ class ParkingPolicy < ApplicationPolicy
   end
 
   def edit?
-    if record.user == user
-      true
-    else
-      false
-    end
+    record.user == user
   end
 
   def destroy?
-    if record.user == user
-      true
-    else
-      false
-    end
+    record.user == user
   end
 end

@@ -55,7 +55,9 @@ class ParkingsController < ApplicationController
   end
 
   def destroy
-
+    authorize @parking
+    @parking.delete
+    redirect_to parkings_path
   end
 
   private
