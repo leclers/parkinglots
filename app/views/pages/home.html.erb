@@ -10,8 +10,8 @@
     <% @home_parkings.each do |parking| %>
       <div class="col-xs-12 col-md-6 col-lg-4 parking-card">
         <div class="card-header">
-          <%= parking.city %>
-          <%= parking.user.email %>
+          <h6><%= parking.city %></h6>
+          <p><%= parking.user.email %></p>
         </div>
       </div>
     <% end %>
