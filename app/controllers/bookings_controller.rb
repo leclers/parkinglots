@@ -9,6 +9,16 @@ class BookingsController < ApplicationController
   end
 
   def create
+    @parking = Parking.find(params[:parking_id])
+    raise
+    @booking = Booking.new(booking_params)
+    @booking.parking = @parking
+
+    if @booking.save
+      redirect_to parking_path(@parking)
+    else
+      render :new
+    end
   end
 
   def edit
@@ -17,4 +27,9 @@ class BookingsController < ApplicationController
   def update
   end
 
+  private
+
+  def booking_params
+    params.require(:booking).permit(:start_date, :end_date)
+  end
 end
