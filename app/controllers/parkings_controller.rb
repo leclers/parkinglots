@@ -21,7 +21,6 @@ class ParkingsController < ApplicationController
   end
 
   def new
-    # @parking = current_user.parkings.build
     @parking = Parking.new
     authorize @parking
   end
@@ -34,8 +33,10 @@ class ParkingsController < ApplicationController
     authorize @parking
 
     if @parking.save
+      flash[:notice] = "great, you have successfully uploaded your parking spot"
       redirect_to parking_path(@parking)
     else
+      flash[:alert] = "oops, something is wrong, dude."
       render :new
     end
   end
