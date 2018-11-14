@@ -1,23 +1,4 @@
 
-<div class="container">
-  <div class="row">
-
-    <div class="col-xs-12 col-md 8 col-offset-md-2">
-
-      <h1></h1>
-
-      <h1>Parking to rent</h1>
-
-       <p><%= @parking.address %></p>
-       <%= @parking.start_time %>
-       <%= @parking.finish_time %>
-       <%#= image_tag @parking.photo %>
-
-    </div>
-
-  </div>
-</div>
-
 
 <div class="parking-content">
 
@@ -47,7 +28,7 @@
     <% if @parking.photo.nil?  %>
       <%= image_tag "http://bit.ly/2PUFPFK" %>
     <% else %>
-      <%= @parking.photo %>
+      <%= image_tag "http://bit.ly/2PUFPFK" %>
     <% end %>
 
   </div>
