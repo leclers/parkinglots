@@ -12,4 +12,16 @@ class ParkingPolicy < ApplicationPolicy
   def create?
     return true
   end
+
+  def update?
+    true
+  end
+
+  def edit
+    if user == current_user
+      true
+    else
+      false
+    end
+  end
 end

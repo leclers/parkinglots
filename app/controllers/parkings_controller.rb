@@ -42,11 +42,27 @@ class ParkingsController < ApplicationController
   end
 
   def edit
+    @parking = Parking.find(params[:id])
+    authorize @parking
+  end
+
+  def update
+    @parking = Parking.new(parking_params)
+    @parking.user = current_user
+    @parking.save
+    authorize @parking
+    if @parking.save
+      flash[:notice] = "parking successfully updated, cool cool"
+      redirect_to parking_path(@parking)
+    else
+      flash[:alert] = "oops, something is wrong, dude."
+      render :edit
+    end
   end
 
   private
 
   def parking_params
-    params.require(:parking).permit(:address, :description, :city, :start_time, :finish_time, :price)
+    params.require(:parking).permit(:address, :description, :start_time, :finish_time, :price, :city, :zip_code, :photo)
   end
 end
