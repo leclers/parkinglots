@@ -5,6 +5,14 @@ class ParkingsController < ApplicationController
   # USE A PUNDIT PUNDIT PUNDIT
   def index
     @parkings = policy_scope(Parking)
+    @parkings = Parking.where.not(latitude: nil, longitude: nil)
+
+    @markers = @parkings.map do |parking|
+      {
+        lng: parking.longitude,
+        lat: parking.latitude
+      }
+    end
   end
 
   def show
