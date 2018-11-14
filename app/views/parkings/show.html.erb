@@ -1,7 +1,4 @@
 
-
-
-
 <div class="container">
   <div class="row">
 
@@ -19,6 +16,42 @@
     </div>
 
   </div>
+</div>
+
+
+<div class="parking-content">
+
+  <div class="parking-description">
+
+    <div class="main-details">
+      <h3>beautiful spot in
+        <% if @parking.city.nil? %>
+          Montréal
+        <% else %>
+          <%= @parking.city %>
+        <% end %>
+        </h3>
+      <p><%= @parking.address %></p>
+      <p><%= @parking.user.email %></p>
+    </div>
+
+    <div class="parking-dispo">
+     <%= @parking.start_time %>
+     <%= @parking.finish_time %>
+    </div>
+  </div>
+
+
+  <div class="parking-image">
+
+    <% if @parking.photo.nil?  %>
+      <%= image_tag "http://bit.ly/2PUFPFK" %>
+    <% else %>
+      <%= @parking.photo %>
+    <% end %>
+
+  </div>
+
 </div>
 
 
