@@ -26,14 +26,12 @@ class ParkingsController < ApplicationController
     authorize @parking
 
     if @parking.save
-      # flash[:success] = "Success! Rental space was created."
       redirect_to parkings_path
     else
-      # flash[:error] = "Woopsy, please verify your information is correct"
       render :new
     end
   end
-
+  
   def edit
   end
 
