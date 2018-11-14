@@ -1,4 +1,8 @@
-<h1>look all the empty spaces you could have to your car.</h1>
+
+<div class="container">
+  <h3>look at all the available parking spaces.</h3>
+  <h6><span class="accent-header">there is one for you!</span></h6>
+</div>
 
 <div class="container">
   <div class="row">
@@ -6,7 +10,7 @@
       <div class="col-xs-12 col-md-6 col-lg-4">
         <%= link_to parking_path(parking), class: 'parking-image' do %>
           <div class="parking-card">
-            <%= parking.description %>
+            <%= parking.description[0] %>
             <%= parking.address %>
             <%= parking.city %>
           </div>

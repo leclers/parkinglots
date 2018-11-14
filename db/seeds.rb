@@ -32,7 +32,7 @@ User.all.each do |user|
     start_time: Faker::Time.between(DateTime.now - 10, DateTime.now + 10),
     finish_time: Faker::Time.between(DateTime.now, DateTime.now + 10),
     photo: Faker::Placeholdit.image, #=> "http://placehold.it/300x300.png/000"
-    description: Faker::Lorem.paragraphs
+    description: Faker::HarryPotter.quote
   })
   end
 end
