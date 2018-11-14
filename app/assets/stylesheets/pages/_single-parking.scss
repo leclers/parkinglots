@@ -1,1 +1,20 @@
 /* ------ PAGES : SINGLE PARKING ------ */
+
+
+.parking-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.parking-description {
+  flex: 0 0 35%;
+  align-self: center;
+  text-align: right;
+}
+
+.parking-image {
+  img {
+    max-height: 80vh;
+  }
+}
