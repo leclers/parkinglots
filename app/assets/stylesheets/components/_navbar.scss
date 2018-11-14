@@ -11,9 +11,17 @@
 }
 
 /* Logo */
-.navbar-wagon-brand img {
-  height: 50px;
+.navbar-wagon-brand {
+  display: flex;
+  align-items: center;
+
+  i {
+    color: $slate-gray;
+    font-size: 3.2rem;
+    margin-right: 10px;
+  }
 }
+
 
 /* User Avatar */
 .navbar-wagon .avatar {

@@ -5,4 +5,7 @@ class PagesController < ApplicationController
     @parkings = Parking.all
     @home_parkings = Parking.all.sample(8)
   end
+
+  def test
+  end
 end
