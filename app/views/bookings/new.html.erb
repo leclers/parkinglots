@@ -1,2 +1,9 @@
-<h1>Bookings#new</h1>
-<p>Find me in app/views/bookings/new.html.erb</p>
+<h1>Your Bookings</h1>
+
+<p><%= simple_form_for(@parking, @booking) do |f| %>
+<%= f.input :start_date, label: "Check In", placeholder: "8/03/2017" %>
+<%= f.input :end_date, label: "Check Out", placeholder: "8/15/2017" %>
+
+<%= f.submit class: 'btn btn-light full-width', value: "Book now" %>
+
+<% end %></p>
