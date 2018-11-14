@@ -6,4 +6,7 @@ class PagesController < ApplicationController
     @parkings = Parking.all
     @home_parkings = Parking.all.sample(3)
   end
+
+  def test
+  end
 end

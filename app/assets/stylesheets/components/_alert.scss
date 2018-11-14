@@ -1,20 +1,16 @@
-/* -------------------------------------
- * Your CSS code for flash notices and alerts
-* ------------------------------------- */
+/* ------ COMPONENTS : ALERT ------ */
 
-.alert,
-.notice {
-  position: fixed;
-  top: 0;
+.alert {
+  margin-top: 70px;
   left: 0;
   right: 0;
   margin: 0;
   text-align: center;
-  color: white;
+  color: $baby-white;
 }
 .alert-info {
-  background: $green;
+  background: $slate-gray;
 }
 .alert-warning {
-  background: $red;
+  background: $pastel-red;
 }

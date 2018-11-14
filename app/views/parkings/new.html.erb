@@ -1,2 +1,13 @@
-<h1>Parkings#new</h1>
-<p>Find me in app/views/parkings/new.html.erb</p>
+<% if user_signed_in? %>
+<div class='text-center'>
+  <h1>Rent out your parking space</h1>
+</div>
+<!-- links to form: New parking Space Proposal -->
+<p><%= render "form" %></p>
+
+<% else %>
+<!-- a user can go back to Home page without adding a parking space -->
+<!-- can change link path as needed -->
+<%= link_to "Login", new_user_session_path %>
+<% end %>
+
