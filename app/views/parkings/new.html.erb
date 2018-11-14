@@ -1,13 +1,19 @@
-<% if user_signed_in? %>
-<div class='text-center'>
-  <h1>Rent out your parking space</h1>
+<div class="container">
+  <div class="row">
+    <% if user_signed_in? %>
+      <div class='text-center'>
+        <h3>don't let your parking space get lonely</h3>
+        <h6><span class="accent-header">and make money out of it</span></h6>
+      </div>
+      <!-- links to form: New parking Space Proposal -->
+      <p><%= render "form" %></p>
+    <% else %>
+      <!-- a user can go back to Home page without adding a parking space -->
+      <!-- can change link path as needed -->
+      <%= link_to "Login", new_user_session_path %>
+    <% end %>
+  </div>
 </div>
-<!-- links to form: New parking Space Proposal -->
-<p><%= render "form" %></p>
 
-<% else %>
-<!-- a user can go back to Home page without adding a parking space -->
-<!-- can change link path as needed -->
-<%= link_to "Login", new_user_session_path %>
-<% end %>
+
 

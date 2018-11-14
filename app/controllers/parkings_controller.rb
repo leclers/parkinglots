@@ -26,7 +26,7 @@ class ParkingsController < ApplicationController
     authorize @parking
 
     if @parking.save
-      redirect_to parkings_path
+      redirect_to parking_path(@parking)
     else
       render :new
     end
