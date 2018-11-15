@@ -4,6 +4,16 @@
     <i><i class="fas fa-car"></i></i>
   <% end %>
 
+  <div id="navbar-search">
+    <%= form_tag parkings_path, method: :get do %>
+      <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "find a parking space"
+       %>
+    <% end %>
+  </div>
+
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 

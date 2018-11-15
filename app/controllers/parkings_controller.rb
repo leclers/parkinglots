@@ -2,20 +2,32 @@ class ParkingsController < ApplicationController
   before_action :set_parking, only: [:show, :edit, :update, :destroy]
 
   def index
-    @parkings = policy_scope(Parking).where.not(latitude: nil, longitude: nil)
-    # @parkings = Parking.
+    if params[:query].present?
+      @parkings = policy_scope(Parking).search_by_city(params[:query]).where.not(latitude: nil, longitude: nil)
+    else
+      @parkings = policy_scope(Parking).where.not(latitude: nil, longitude: nil)
+    end
 
     @markers = @parkings.map do |parking|
       {
         lng: parking.longitude,
-        lat: parking.latitude
+        lat: parking.latitude,
+        infoWindow: { content: render_to_string(partial: "/parkings/map_window_index", locals: { parking: parking }) }
       }
     end
   end
 
   def show
     @parking = Parking.find(params[:id])
+    @booking = Booking.new
     authorize @parking
+
+    @marker = {
+        lng: @parking.longitude,
+        lat: @parking.latitude,
+        infoWindow: { content: render_to_string(partial: "/parkings/map_window_show", locals: { parking: @parking }) }
+    }
+    
   end
 
   def new
@@ -27,7 +39,6 @@ class ParkingsController < ApplicationController
     @parking = Parking.new(parking_params)
     @parking.user = current_user
     @parking.save
-
     authorize @parking
 
     if @parking.save
