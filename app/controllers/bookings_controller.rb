@@ -16,6 +16,7 @@ class BookingsController < ApplicationController
     authorize @booking
   end
 
+  # needs an if statement to not allow selecting dates that are not available
   def create
     @parking = Parking.find(params[:parking_id])
     @booking = Booking.new(booking_params)
@@ -24,9 +25,9 @@ class BookingsController < ApplicationController
     authorize @booking
     if @booking.save
       flash[:notice] = "great, you have successfully booked your parking space"
-      redirect_to parking_path(@parking)
+      redirect_to booking_path(@bookng)
     else
-      flash[:alert] = "oops, something is wrong, dude."
+      flash[:alert] = "oops, this space is not available for that time, dude."
       render :new
     end
   end
@@ -39,7 +40,7 @@ class BookingsController < ApplicationController
     authorize @booking
     if @booking.update(booking_params)
       flash[:notice] = "successfully edited your booking"
-      redirect_to booking_path(@booking)
+      redirect_to parking_path(@parking)
     else
       flash[:alert] = "oops, something is wrong, dude."
       render :edit
@@ -55,5 +56,4 @@ class BookingsController < ApplicationController
   def booking_params
     params.require(:booking).permit(:start_time, :finish_time)
   end
-
 end

@@ -1,0 +1,7 @@
+
+<%= simple_form_for([@parking, @booking]) do |f| %>
+<%= f.input :start_time, label: "start date", as: :datepicker  %>
+<%= f.input :finish_time, label: "end date", as: :datepicker%>
+
+<%= f.submit class: 'btn btn-light full-width', value: "Book now" %>
+<% end %>
