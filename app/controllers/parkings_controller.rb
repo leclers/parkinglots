@@ -2,7 +2,11 @@ class ParkingsController < ApplicationController
   before_action :set_parking, only: [:show, :edit, :update, :destroy]
 
   def index
-    @parkings = policy_scope(Parking).where.not(latitude: nil, longitude: nil)
+    if params[:query].present?
+      @parkings = policy_scope(Parking).search_by_city(params[:query]).where.not(latitude: nil, longitude: nil)
+    else
+      @parkings = policy_scope(Parking).where.not(latitude: nil, longitude: nil)
+    end
 
     @markers = @parkings.map do |parking|
       {
