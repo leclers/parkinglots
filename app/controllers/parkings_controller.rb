@@ -3,7 +3,6 @@ class ParkingsController < ApplicationController
 
   def index
     @parkings = policy_scope(Parking).where.not(latitude: nil, longitude: nil)
-    # @parkings = Parking.
 
     @markers = @parkings.map do |parking|
       {
