@@ -21,14 +21,14 @@
   font-size: 1.2rem;
 }
 
-.parking-more {
-  position:absolute;
-  bottom: 0px;
-  right: 0px;
-  i {
-    font-size: 4rem;
-  }
-}
+// .parking-more {
+//   position:absolute;
+//   bottom: 0px;
+//   right: 0px;
+//   i {
+//     font-size: 4rem;
+//   }
+// }
 .parking-details {
   position: absolute;
   bottom: 0;
@@ -36,8 +36,15 @@
   width: 100%;
   padding: 4%;
   background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   h6 {
     text-transform: uppercase;
-    font-size: 2rem;
+    font-size: 1.4rem;
+  }
+
+  a:hover i {
+    background: none;
   }
 }

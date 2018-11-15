@@ -1,5 +1,6 @@
 class Parking < ApplicationRecord
   belongs_to :user
+  has_many :bookings
 
   validates :address, presence: true
   validates :start_time, presence: true

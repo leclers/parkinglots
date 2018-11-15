@@ -1,5 +1,10 @@
 /* ------ PAGES : SINGLE PARKING ------ */
 
+
+.parking-title {
+  text-align: center;
+}
+
 .parking-content {
   display: flex;
   justify-content: space-around;
@@ -7,18 +12,27 @@
 }
 
 .parking-description {
-  flex: 0 0 35%;
   align-self: center;
   text-align: right;
 }
 
 .parking-image {
   img {
-    max-height: 80vh;
+    height: 400px;
   }
 }
 
 
 .parking-actions {
   margin-top: 12px;
+}
+
+#map-wrapper {
+  flex: 0 0 50%;
+}
+
+#map-show {
+  width: 100%;
+  height: 90vh;
+  margin: auto;
 }

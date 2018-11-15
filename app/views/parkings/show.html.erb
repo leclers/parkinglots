@@ -1,62 +1,78 @@
-
+<div class="parking-title">
+  <h3>beautiful space in
+    <% if @parking.city.nil? %>
+      Montréal
+    <% else %>
+      <%= @parking.city %>
+    <% end %>
+    </h3>
+</div>
 
 <div class="parking-content">
 
   <div class="parking-description">
-
     <div class="main-details">
-      <h3>beautiful space in<br>
-        <% if @parking.city.nil? %>
-          Montréal
-        <% else %>
-          <%= @parking.city %>
-        <% end %>
-        </h3>
+
       <p><%= @parking.address %></p>
       <p><%= @parking.user.email %></p>
       <p><%= @parking.description %></p>
-    </div>
+    </div> <!-- end of main-details -->
 
-    <div class="parking-dispo">
-      <p>this place is available between</p>
-      <p><%= @parking.start_time.year %>/<%= @parking.start_time.month %>/<%= @parking.start_time.day %> and
-      <%= @parking.finish_time.year %>/<%= @parking.finish_time.month %>/<%= @parking.finish_time.day %></p>
-    </div>
+    <!-- <div class="parking-dispo"> -->
+      <!-- <p>this place is available between</p> -->
+      <%#= @parking.start_time.strftime("%Y/%m/%d") %>
+      <%#= @parking.finish_time.strftime("%Y/%m/%d") %>
+    <!-- </div> end of parking-dispo -->
 
-    <div class="parking-actions">
+  <div id="parking-calendar">
 
-      <% if policy(@parking).edit? && policy(@parking).destroy? %>
-        <%= link_to 'edit the space', edit_parking_path(@parking), class: 'btn btn-primary' %>
-        <%= link_to 'delete my space', parking_path(@parking), method: :delete, class: 'btn btn-info' %>
-        <%= link_to 'see all the bookings for this space', '#', class: 'btn btn-info' %>
-        <% else %>
-        <%= link_to 'book this space', new_parking_booking_path(@parking), class: 'btn btn-info' %>
+    <%= calendar start_date: @parking.start_time, number_of_days: ((@parking.finish_time - @parking.start_time).to_f/86400).ceil, end_attribute: :finish_time, events: @parking.bookings do |date, bookings| %>
+      <%# raise %>
+      <%= date.day %>
+
+      <% bookings.each do |booking| %>
+        <div>
+          X
+        </div>
       <% end %>
-    </div>
-
-  </div>
-
-
-
-  <div class="parking-image">
-
-    <% if @parking.photo.nil?  %>
-      <%= image_tag "http://bit.ly/2PUFPFK" %>
-    <% else %>
-      <%= cl_image_tag @parking.photo, crop: :fill %>
     <% end %>
 
   </div>
 
-</div>
 
-<div
-  id="map-show"
-  style="width: 30%;
+    <div class="parking-image">
+      <% if @parking.photo.nil?  %>
+        <%= image_tag "http://bit.ly/2PUFPFK" %>
+      <% else %>
+        <%= cl_image_tag @parking.photo, crop: :fill %>
+      <% end %>
+    </div> <!-- end of parking-image-->
 
-  height: 200px;"
-  data-marker="<%= @marker.to_json %>"
-></div>
+    <div class="parking-actions">
+      <% if policy(@parking).edit? && policy(@parking).destroy? %>
+      <ul>
+        <%= link_to 'edit', edit_parking_path(@parking), class: 'btn btn-info' %>
+        <%= link_to 'delete', parking_path(@parking), method: :delete, class: 'btn btn-info' %>
+      </ul>
+        <%= link_to 'see all the bookings for this space', '#', class: 'btn btn-info' %>
+        <% else %>
+        <%= link_to 'book this space', new_parking_booking_path(@parking), class: 'btn btn-primary' %>
+      <% end %>
+    </div> <!-- end of parking-actions -->
+  </div> <!-- end of parking-description -->
+
+  <div id="map-wrapper">
+    <div
+      id="map-show"
+      data-marker="<%= @marker.to_json %>"
+    ></div>
+  </div>
+
+
+</div> <!-- end of parking content -->
+
+
+
 
 
 <%= simple_form_for([@parking, @booking]) do |f| %>

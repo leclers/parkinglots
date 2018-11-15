@@ -17,7 +17,7 @@ $gray-base: $dark-gray;
 
 $brand-primary:   $slate-gray;
 $brand-success:   $dark-blue;
-$brand-info:      $slate-gray;
+$brand-info:      lighten($slate-gray, 10%);
 $brand-danger:    $pastel-red;
 $brand-warning:   $pastel-red;
 
