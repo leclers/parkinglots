@@ -6,10 +6,22 @@ class ParkingPolicy < ApplicationPolicy
   end
 
   def show?
-    return true
+    true
   end
 
   def create?
-    return true
+    true
+  end
+
+  def update?
+    true
+  end
+
+  def edit?
+    record.user == user
+  end
+
+  def destroy?
+    record.user == user
   end
 end
