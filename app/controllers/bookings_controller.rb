@@ -25,7 +25,7 @@ class BookingsController < ApplicationController
     authorize @booking
     if @booking.save
       flash[:notice] = "great, you have successfully booked your parking space"
-      redirect_to booking_path(@bookng)
+      redirect_to booking_path(@booking)
     else
       flash[:alert] = "oops, this space is not available for that time, dude."
       render :new
