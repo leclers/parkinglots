@@ -11,7 +11,6 @@
 <div class="parking-content">
 
   <div class="parking-description">
-
     <div class="main-details">
 
       <p><%= @parking.address %></p>
@@ -43,18 +42,15 @@
         <%= link_to 'book this space', new_parking_booking_path(@parking), class: 'btn btn-info' %>
       <% end %>
     </div> <!-- end of parking-actions -->
-
   </div> <!-- end of parking-description -->
 
+  <div id="map-wrapper">
+    <div
+      id="map-show"
+      data-marker="<%= @marker.to_json %>"
+    ></div>
+  </div>
 
-<div id="map-wrapper">
-
-  <div
-    id="map-show"
-    data-marker="<%= @marker.to_json %>"
-  ></div>
-
-</div>
 
 </div> <!-- end of parking content -->
 
