@@ -10,13 +10,19 @@ class ParkingsController < ApplicationController
     @markers = @parkings.map do |parking|
       {
         lng: parking.longitude,
-        lat: parking.latitude
+        lat: parking.latitude,
+        infoWindow: { content: render_to_string(partial: "/parkings/map_window", locals: { parking_object: parking }) }
       }
     end
   end
 
   def show
     @parking = Parking.find(params[:id])
+    @marker = {
+        lng: @parking.longitude,
+        lat: @parking.latitude,
+        infoWindow: { content: render_to_string(partial: "/parkings/map_window", locals: { parking: parking }) }
+      }
     authorize @parking
   end
 
@@ -29,7 +35,6 @@ class ParkingsController < ApplicationController
     @parking = Parking.new(parking_params)
     @parking.user = current_user
     @parking.save
-
     authorize @parking
 
     if @parking.save
