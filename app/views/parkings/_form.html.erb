@@ -9,6 +9,8 @@
           <%= f.input :city %>
           <%= f.input :start_time, as: :datepicker %>
           <%= f.input :finish_time, as: :datepicker %>
+          <%= f.input :photo %>
+          <%= f.input :photo_cache, as: :hidden %>
 
           <!-- adding start/finish times makes layout look strange -->
           <%= f.submit class: 'btn btn-primary' %>

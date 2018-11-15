@@ -2,11 +2,12 @@
   <div class="banner-content">
     <h3>tired of spending hours looking for a parking space?</h3>
     <h6><span class="accent-header">we have one for you!</span></h6>
-    <%= simple_form_for(@parking) do |f| %>
-
-      <%= f.input :city, placeholder: 'where would you like to park your car?'%>
-      <%= f.submit value: 'search', class: 'btn btn-primary' %>
-
+      <%= form_tag parkings_path, method: :get do %>
+        <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "where would you like to park your car?"
+         %>
     <% end %>
   </div>
 </div>

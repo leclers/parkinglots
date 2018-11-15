@@ -1,0 +1,40 @@
+<% @parkings.each do |parking| %>
+
+  <div class="col-xs-12 col-md-6 col-lg-4">
+    <%#= link_to parking_path(parking), class: 'parking-image' do %>
+      <div class="parking-card" style="background-image: linear-gradient(rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.6) 50%), url(<%= parking.photo %>)">
+
+        <div class="parking-header">
+          <p>
+            <span class="parking-tags">residential</span>
+            <span class="parking-tags">daytime</span>
+            <span class="parking-tags">verified</span>
+          </p>
+          <p><%= parking.city %></p>
+        </div> <!-- end of parking header -->
+
+        <div class="parking-details">
+          <p>own by <%= parking.user.email %></p>
+          <p><%= parking.price.floor %>$/day</p>
+          <i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div> <!-- end of parking details -->
+
+        <div class="parking-more">
+          <%= link_to parking_path(parking) do %>
+          <i class="fas fa-plus-circle"></i>
+          <% end %>
+        </div> <!-- end of parking more -->
+      </div>
+    <%# end %> <!-- end of link -->
+  </div> <!-- end of col classes -->
+
+<% end %> <!-- end of loop in the array -->
+
+
+
+
+
+
+
+
+
