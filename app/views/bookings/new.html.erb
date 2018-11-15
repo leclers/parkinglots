@@ -1,8 +1,8 @@
 <h1>Your Bookings</h1>
 
-<p><%= simple_form_for(@parking, @booking) do |f| %>
-<%= f.input :start_date, label: "Check In", placeholder: "8/03/2017" %>
-<%= f.input :end_date, label: "Check Out", placeholder: "8/15/2017" %>
+<p><%= simple_form_for([@parking, @booking]) do |f| %>
+<%= f.input :start_time, label: "Check In", as: :datepicker  %>
+<%= f.input :finish_time, label: "Check Out", as: :datepicker%>
 
 <%= f.submit class: 'btn btn-light full-width', value: "Book now" %>
 
