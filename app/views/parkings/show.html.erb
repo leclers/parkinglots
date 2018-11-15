@@ -43,7 +43,7 @@
     <% if @parking.photo.nil?  %>
       <%= image_tag "http://bit.ly/2PUFPFK" %>
     <% else %>
-      <%= image_tag "http://bit.ly/2PUFPFK" %>
+      <%= cl_image_tag @parking.photo, crop: :fill %>
     <% end %>
 
   </div>
