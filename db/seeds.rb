@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 puts "cleaning the db"
 
 Booking.delete_all
@@ -18,14 +10,6 @@ serge = User.create(email: 'serge@lewagon.org', password: 'wagonwagon')
 esteban = User.create(email: 'esteban@lewagon.org', password: 'wagonwagon')
 claire = User.create(email: 'claire@lewagon.org', password: 'wagonwagon')
 camille = User.create(email: 'camille@lewagon.org', password: 'wagonwagon')
-
-
-# 8.times do
-#   User.create( {
-#     email: Faker::Internet.email,
-#     password: Faker::Internet.password(10)
-#   })
-# end
 
 Parking.create(
   user_id: serge.id,
@@ -71,23 +55,6 @@ Parking.create(
   photo: "http://bit.ly/2PVqVPC"
 )
 
-
-
-# User.all.each do |user|
-#   2.times do
-#     Parking.create({
-#     user_id: user.id,
-#     address: Faker::Address.street_address,
-#     city: Faker::HarryPotter.location,
-#     zip_code: Faker::Address.zip_code,
-#     start_time: Faker::Time.between(DateTime.now - 10, DateTime.now + 10),
-#     finish_time: Faker::Time.between(DateTime.now, DateTime.now + 10),
-#     photo: Faker::Placeholdit.image, #=> "http://placehold.it/300x300.png/000"
-#     description: Faker::HarryPotter.quote
-#   })
-#   end
-# end
-
 users = User.all
 parkings = Parking.all
 
@@ -99,7 +66,5 @@ parkings = Parking.all
     finish_time: Time.now + Random.new.rand(20),
   })
 end
-
-
 
 puts "all finished, cool"
