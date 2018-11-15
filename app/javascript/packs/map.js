@@ -1,20 +1,23 @@
 import 'mapbox-gl/dist/mapbox-gl.css';
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
 
-const mapElement = document.getElementById('map');
+const mapElementIndex = document.getElementById('map');
+const mapElementShow = document.getElementById('map-show');
 
-if (mapElement) { // only build a map if there's a div#map to inject into
+if (mapElementIndex) { // only build a map if there's a div#map to inject into
   mapboxgl.accessToken = process.env.MAPBOX_API_KEY; // API key from `.env`
   const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v10'
   });
 
-  const markers = JSON.parse(mapElement.dataset.markers);
+  const markers = JSON.parse(mapElementIndex.dataset.markers);
 
   markers.forEach((marker) => {
     new mapboxgl.Marker()
       .setLngLat([marker.lng, marker.lat])
+      .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+      .setHTML(marker.infoWindow.content))
       .addTo(map);
   })
 
@@ -30,4 +33,24 @@ if (mapElement) { // only build a map if there's a div#map to inject into
     });
     map.fitBounds(bounds, { duration: 0, padding: 75 })
   }
+}
+
+if (mapElementShow) { // only build a map if there's a div#map to inject into
+  mapboxgl.accessToken = process.env.MAPBOX_API_KEY; // API key from `.env`
+  const map = new mapboxgl.Map({
+    container: 'map-show',
+    style: 'mapbox://styles/mapbox/streets-v10'
+  });
+
+  const marker = JSON.parse(mapElementShow.dataset.marker);
+
+  new mapboxgl.Marker()
+    .setLngLat([marker.lng, marker.lat])
+    .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    .setHTML(marker.infoWindow.content))
+    .addTo(map);
+
+  map.setZoom(14);
+  map.setCenter([marker.lng, marker.lat]);
+
 }
