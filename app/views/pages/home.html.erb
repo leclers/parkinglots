@@ -30,7 +30,8 @@
     <% @home_parkings.each do |parking| %>
       <div class="col-xs-12 col-md-6 col-lg-4">
         <%= link_to parking_path(parking) do %>
-          <div class="parking-card">
+        <%# raise %>
+          <div class="parking-card" style="background-image: url( <%= parking.photo %> )">
             <div class="card-header">
               <h6><%= parking.city %></h6>
               <p><%= parking.user.email %></p>
