@@ -11,7 +11,7 @@ class ParkingsController < ApplicationController
       {
         lng: parking.longitude,
         lat: parking.latitude,
-        infoWindow: { content: render_to_string(partial: "/parkings/map_window", locals: { parking_object: parking }) }
+        infoWindow: { content: render_to_string(partial: "/parkings/map_window_index", locals: { parking: parking }) }
       }
     end
   end
@@ -21,8 +21,8 @@ class ParkingsController < ApplicationController
     @marker = {
         lng: @parking.longitude,
         lat: @parking.latitude,
-        infoWindow: { content: render_to_string(partial: "/parkings/map_window", locals: { parking: parking }) }
-      }
+        infoWindow: { content: render_to_string(partial: "/parkings/map_window_show", locals: { parking: @parking }) }
+    }
     authorize @parking
   end
 
