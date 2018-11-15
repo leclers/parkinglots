@@ -1,9 +1,5 @@
-<h1>Your Booking</h1>
 
-<p><%= simple_form_for([@parking, @booking]) do |f| %>
-<%= f.input :start_time, label: "Check In", as: :datepicker  %>
-<%= f.input :finish_time, label: "Check Out", as: :datepicker%>
 
-<%= f.submit class: 'btn btn-light full-width', value: "Book now" %>
+<%= render "form" %>
 
-<% end %></p>
+<!-- links to payment/thank you page -->

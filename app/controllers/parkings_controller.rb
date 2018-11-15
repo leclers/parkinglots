@@ -19,12 +19,15 @@ class ParkingsController < ApplicationController
 
   def show
     @parking = Parking.find(params[:id])
+    @booking = Booking.new
+    authorize @parking
+
     @marker = {
         lng: @parking.longitude,
         lat: @parking.latitude,
         infoWindow: { content: render_to_string(partial: "/parkings/map_window_show", locals: { parking: @parking }) }
     }
-    authorize @parking
+    
   end
 
   def new
