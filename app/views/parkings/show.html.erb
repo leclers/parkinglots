@@ -57,6 +57,23 @@
 
 </div> <!-- end of parking content -->
 
+<div class="container">
+  <div class="row">
+    <%= calendar start_date: @parking.start_time, number_of_days: ((@parking.finish_time - @parking.start_time).to_f/86400).ceil, end_attribute: :finish_time, events: @parking.bookings do |date, bookings| %>
+      <%# raise %>
+      <%= date.day %>
+
+      <% bookings.each do |booking| %>
+        <div>
+          X
+        </div>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>
+
+
 
 
 
