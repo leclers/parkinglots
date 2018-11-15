@@ -20,9 +20,10 @@
 
     <div class="parking-dispo">
       <p>this place is available between</p>
-      <p><%= @parking.start_time.year %>/<%= @parking.start_time.month %>/<%= @parking.start_time.day %> and
-      <%= @parking.finish_time.year %>/<%= @parking.finish_time.month %>/<%= @parking.finish_time.day %></p>
+      <p><%= @parking.start_time.strftime("%Y/%m/%d") %> and
+      <%= @parking.finish_time.strftime("%Y/%m/%d") %></p>
     </div> <!-- end of parking-dispo -->
+
 
 
     <div class="parking-image">
@@ -35,11 +36,13 @@
 
     <div class="parking-actions">
       <% if policy(@parking).edit? && policy(@parking).destroy? %>
-        <%= link_to 'edit the space', edit_parking_path(@parking), class: 'btn btn-primary' %>
-        <%= link_to 'delete my space', parking_path(@parking), method: :delete, class: 'btn btn-info' %>
+      <ul>
+        <%= link_to 'edit', edit_parking_path(@parking), class: 'btn btn-info' %>
+        <%= link_to 'delete', parking_path(@parking), method: :delete, class: 'btn btn-info' %>
+      </ul>
         <%= link_to 'see all the bookings for this space', '#', class: 'btn btn-info' %>
         <% else %>
-        <%= link_to 'book this space', new_parking_booking_path(@parking), class: 'btn btn-info' %>
+        <%= link_to 'book this space', new_parking_booking_path(@parking), class: 'btn btn-primary' %>
       <% end %>
     </div> <!-- end of parking-actions -->
   </div> <!-- end of parking-description -->
