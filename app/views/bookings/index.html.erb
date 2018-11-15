@@ -1,2 +1,12 @@
-<h1> Your Parking Rental Bookings </h1>
+<h3> All Your Bookings</h3>
 
+<div class="container">
+
+  <div class="row">
+    <% @requested_bookings.each do |booking| %>
+          <div class="booking-card">
+            <%= booking.start_time %>
+          </div>
+    <% end %>
+  </div>
+</div>
