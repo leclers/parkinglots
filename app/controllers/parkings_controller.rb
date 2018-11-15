@@ -1,8 +1,6 @@
 class ParkingsController < ApplicationController
-  # parkings references devise/user
-  # will need to validate user before action
-  # current_user OR user_id
-  # USE A PUNDIT PUNDIT PUNDIT
+  before_action :set_parking, only: [:show, :edit, :update, :destroy]
+
   def index
     @parkings = policy_scope(Parking).where.not(latitude: nil, longitude: nil)
     # @parkings = Parking.
@@ -42,17 +40,13 @@ class ParkingsController < ApplicationController
   end
 
   def edit
-    @parking = Parking.find(params[:id])
     authorize @parking
   end
 
   def update
-    @parking = Parking.new(parking_params)
-    @parking.user = current_user
-    @parking.save
     authorize @parking
-    if @parking.save
-      flash[:notice] = "parking successfully updated, cool cool"
+    if @parking.update(parking_params)
+      flash[:notice] = "great, you have successfully edited your parking space"
       redirect_to parking_path(@parking)
     else
       flash[:alert] = "oops, something is wrong, dude."
@@ -60,7 +54,17 @@ class ParkingsController < ApplicationController
     end
   end
 
+  def destroy
+    authorize @parking
+    @parking.delete
+    redirect_to parkings_path
+  end
+
   private
+
+  def set_parking
+    @parking = Parking.find(params[:id])
+  end
 
   def parking_params
     params.require(:parking).permit(:address, :description, :start_time, :finish_time, :price, :city, :zip_code, :photo)
