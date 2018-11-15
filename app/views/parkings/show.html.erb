@@ -37,6 +37,7 @@
   </div>
 
 
+
   <div class="parking-image">
 
     <% if @parking.photo.nil?  %>
@@ -49,6 +50,13 @@
 
 </div>
 
+<div
+  id="map-show"
+  style="width: 30%;
+
+  height: 200px;"
+  data-marker="<%= @marker.to_json %>"
+></div>
 
 
 
