@@ -14,6 +14,7 @@
         </h3>
       <p><%= @parking.address %></p>
       <p><%= @parking.user.email %></p>
+      <p><%= @parking.description %></p>
     </div>
 
     <div class="parking-dispo">
@@ -23,13 +24,14 @@
     </div>
 
     <div class="parking-actions">
-      <%= link_to 'edit my space', edit_parking_path(@parking), class: 'btn btn-primary' %>
-      <%= link_to 'delete my space', '#', class: 'btn btn-info' %>
-    </div>
 
-    <div class="parking-actions">
-      <%= link_to 'see all the bookings for this space', '#', class: 'btn btn-info' %>
-
+      <% if policy(@parking).edit? && policy(@parking).destroy? %>
+        <%= link_to 'edit the space', edit_parking_path(@parking), class: 'btn btn-primary' %>
+        <%= link_to 'delete my space', parking_path(@parking), method: :delete, class: 'btn btn-info' %>
+        <%= link_to 'see all the bookings for this space', '#', class: 'btn btn-info' %>
+        <% else %>
+        <%= link_to 'book this space', new_parking_booking_path(@parking), class: 'btn btn-info' %>
+      <% end %>
     </div>
 
   </div>
