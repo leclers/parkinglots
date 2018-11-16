@@ -33,7 +33,6 @@
 
   </div>
 
-
     <div class="parking-image">
       <% if @parking.photo.nil?  %>
         <%= image_tag "http://bit.ly/2PUFPFK" %>
@@ -50,7 +49,12 @@
       </ul>
         <%= link_to 'see all the bookings for this space', '#', class: 'btn btn-info' %>
         <% else %>
-        <%= link_to 'book this space', new_parking_booking_path(@parking), class: 'btn btn-primary' %>
+          <%= simple_form_for([@parking, @booking]) do |f| %>
+          <%= f.input :start_time, label: "start date", as: :datepicker  %>
+          <%= f.input :finish_time, label: "end date", as: :datepicker%>
+
+          <%= f.submit class: 'btn btn-light full-width', value: "Book now" %>
+          <% end %>
       <% end %>
     </div> <!-- end of parking-actions -->
   </div> <!-- end of parking-description -->
@@ -69,10 +73,5 @@
 
 
 
-<%= simple_form_for([@parking, @booking]) do |f| %>
-<%= f.input :start_time, label: "start date", as: :datepicker  %>
-<%= f.input :finish_time, label: "end date", as: :datepicker%>
 
-<%= f.submit class: 'btn btn-light full-width', value: "Book now" %>
-<% end %>
 
