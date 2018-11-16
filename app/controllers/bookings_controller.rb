@@ -2,7 +2,7 @@ class BookingsController < ApplicationController
   before_action :set_booking, only: [:edit, :update]
   def index
     @requested_bookings = policy_scope(Booking)
-    @own_parking_bookings = current_user.own_parkings_bookings
+    @own_parkings_bookings = current_user.own_parkings_bookings
   end
 
   def new
@@ -13,8 +13,8 @@ class BookingsController < ApplicationController
   end
 
   def show
-    @parking = Parking.find(params[:id])
-    @booking = Booking.find(param[:id])
+    #@parking = Parking.find(params[:id])
+    @booking = Booking.find(params[:id])
     # @bookings = policy_scope(Booking)
     authorize @booking
   end
