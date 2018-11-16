@@ -1,0 +1,13 @@
+<div class="booking-renter-status">
+  <% if @booking.status == "pending" %>
+  <p class="booking-pending"><i class="fas fa-star"></i>pending</p>
+
+  <% elsif @booking.status == "declined" %>
+  <p class="booking-declined"><i class="fas fa-times"></i>not okay</p>
+
+  <% else @booking.status == "accepted" %>
+  <p class="booking-accepted"><i class="fas fa-check"></i>okay</p>
+
+  <% end %>
+
+</div>

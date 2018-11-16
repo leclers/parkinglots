@@ -1,0 +1,37 @@
+<div id="booking-owner-actions">
+  <% if @booking.status == "pending" %>
+
+    <div class="booking-status">
+      <p>pending booking </p>
+    </div>
+
+    <div class="booking-actions">
+      <%= link_to 'accept this booking', booking_path(@booking, {booking: {status: "accepted"}}), method: :patch %>
+      <%= link_to 'decline this booking', booking_path(@booking, {booking: {status: "declined"}}), method: :patch %>
+    </div>
+
+  <% elsif @booking.status == "declined" %>
+
+  <div class="booking-status">
+    <p>booking declined </p>
+  </div>
+
+  <div class="booking-actions">
+    <%= link_to 'accept this booking', booking_path(@booking, {booking: {status: "accepted"}}), method: :patch %>
+    <%= link_to booking_path(@booking, {booking: {status: "pending"}}), method: :patch do %>
+    <i class="fas fa-question"></i>
+    <% end %>
+  </div>
+
+  <% else @booking.status == "accepted" %>
+  <div class="booking-status">
+    <p>booking accepted</p>
+  </div>
+
+  <div class="booking-actions">
+    <%= link_to 'decline this booking', booking_path(@booking, {booking: {status: "declined"}}), method: :patch %>
+    <%= link_to 'delay the decision', booking_path(@booking, {booking: {status: "pending"}}), method: :patch %>
+  </div>
+  <% end %>
+
+</div>

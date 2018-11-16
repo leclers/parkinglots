@@ -1,18 +1,25 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+    <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
 
-      <h3>details of your booking</h3>
+      <h3>hi <%= current_user.email %></h3>
+      <h6 class="accent-header">somebody wants your parking space, yay!</h6>
 
-      <h6><%= @booking.parking.address %></h6>
-      <p><%= @booking.start_time %></p>
-      <p><%= @booking.finish_time %></p>
+      <div class="booking-details">
+        <p>request for: <%= @booking.parking.address %></p>
+        <p>from: <%= @booking.start_time.strftime("%Y/%m/%d") %> to <%= @booking.finish_time.strftime("%Y/%m/%d") %></p>
+        <p>total:<%= @booking.parking.price * (@booking.finish_time.day - @booking.start_time.day) %> $</p>
+      </div>
 
-      <p><%= @booking.parking.price * (@booking.finish_time.day - @booking.start_time.day) %> $</p>
+      <% if @booking.user == current_user %>
+      <!-- render the page for the user -->
+        <%= render "booking-user" %>
 
-      <h6><%= @booking.status %></h6>
+      <% elsif @booking.parking.user == current_user %>
+      <!-- render the page for a parking owner -->
+        <%= render "booking-owner", {booking: @booking} %>
 
-
+      <% end %>
 
     </div>
   </div>
