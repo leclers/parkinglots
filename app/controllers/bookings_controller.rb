@@ -24,11 +24,14 @@ class BookingsController < ApplicationController
     @booking.parking = @parking
     @booking.user = current_user
     authorize @booking
-    if @booking.save
+    # user should not be allowed to create/book the space if booking already exists
+
+    if @booking.valid? && verify_dates(@booking, @parking)
+      @booking.save
       flash[:notice] = "great, you have successfully booked your parking space"
       redirect_to booking_path(@booking)
     else
-      flash[:alert] = "oops, this space is not available for that time, dude."
+      flash[:alert] = "oops, this space is not available for those dates, dude."
       render :new
     end
   end
@@ -59,4 +62,22 @@ class BookingsController < ApplicationController
   def booking_params
     params.require(:booking).permit(:start_time, :finish_time, :status)
   end
+
+  # below gives undefined method: verify_dates Did you mean verify_authorized
+  def verify_dates(booking, parking)
+    if booking.start_time > parking.start_time && booking.finish_time < parking.finish_time
+      desired_booking = [(booking.start_time..booking.finish_time)]
+      existing_bookings = parking.bookings.map { |existing_bkng| (existing_bkng.start_time..existing_bkng.finish_time) }
+      array_of_ranges = desired_booking + existing_bookings
+      true unless Overlaps.find(array_of_ranges).empty?
+    end
+    false
+  end
+  # def verify_dates
+  #   ('start_time, finish_time').overlaps?('start_time, finish_time')
+  # end
+
+  # def verify_dates
+
+  # end
 end
