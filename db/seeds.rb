@@ -14,12 +14,12 @@ camille = User.create(email: 'camille@lewagon.org', password: 'wagonwagon')
 Parking.create(
   user_id: serge.id,
   address: '5333, avenue Casgrain, H2T 1X3, Montréal',
-  description: "close to the bus station, quiet 'hood.",
+  description: "close to the bus station, quiet hood.",
   city: 'Montréal',
   start_time: Time.now,
   finish_time: Time.now + 10,
   price: 54,
-  photo: "http://bit.ly/2Q1hJZW"
+  remote_photo_url: "http://bit.ly/2Q1hJZW"
 )
 
 Parking.create(
@@ -30,7 +30,7 @@ Parking.create(
   start_time: Time.now,
   finish_time: Time.now + 10,
   price: 42,
-  photo: "http://bit.ly/2Q2iPoc"
+  remote_photo_url: "http://bit.ly/2Q2iPoc"
 )
 
 Parking.create(
@@ -41,7 +41,7 @@ Parking.create(
   start_time: Time.now,
   finish_time: Time.now + 10,
   price: 95,
-  photo: "http://bit.ly/2Q5XXwF"
+  remote_photo_url: "http://seloc-am.org/cms-files/56e6/56e69343332a2.jpg"
 )
 
 Parking.create(
@@ -52,7 +52,7 @@ Parking.create(
   start_time: Time.now,
   finish_time: Time.now + 10,
   price: 37,
-  photo: "http://bit.ly/2PVqVPC"
+  remote_photo_url: "https://cdn.vox-cdn.com/thumbor/XPpD9_FRhv02FWwxbvnKxcZesUc=/0x0:3600x2400/1200x800/filters:focal(1512x912:2088x1488)/cdn.vox-cdn.com/uploads/chorus_image/image/58321331/shutterstock_36463816.0.jpg"
 )
 
 users = User.all
