@@ -1,24 +1,27 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:edit, :update]
   def index
-    @bookings = policy_scope(Booking)
+    @requested_bookings = policy_scope(Booking)
+    @own_parking_bookings = current_user.own_parkings_bookings
   end
 
   def new
-    @parking = Parking.find(params[:parking_id])
+    @parking = Parking.find(params[:id])
     @booking = Booking.new
+    authorize @parking
     authorize @booking
   end
 
   def show
-    @parking = Parking.find(params[:parking_id])
-    @booking = Booking.new
+    @parking = Parking.find(params[:id])
+    @booking = Booking.find(param[:id])
+    # @bookings = policy_scope(Booking)
     authorize @booking
   end
 
   # needs an if statement to not allow selecting dates that are not available
   def create
-    @parking = Parking.find(params[:parking_id])
+    @parking = Parking.find(param[:id])
     @booking = Booking.new(booking_params)
     @booking.parking = @parking
     @booking.user = current_user
