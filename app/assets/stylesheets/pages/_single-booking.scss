@@ -1,0 +1,49 @@
+/* ------ PAGES : SINGLE BOOKING------ */
+
+#booking-page {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+span.booking {
+  background: $ash-gray;
+  color: $dark-gray;
+  font-family: $accent-font;
+  font-size: 1.8rem;
+}
+
+#booking-details {
+  h6 {
+    margin: 2px auto;
+  }
+}
+
+#booking-content {
+  // display: flex;
+  // align-items: center;
+  // justify-content: space-around;
+}
+
+#booking-info {
+  background: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#booking-header {
+  text-align: center;
+}
+
+
+#booking-owner-actions {
+align-self: flex-end;
+text-align: center;
+  .booking-actions a i {
+    font-size: 2rem;
+  }
+
+}
+
