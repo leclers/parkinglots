@@ -20,43 +20,45 @@
   <div id="booking-owner-actions">
     <% if @booking.status == "pending" %>
 
-      <div class="booking-status">
-        <p>pending booking </p>
-      </div>
+      <h6><span class="booking">booking status: pending</span></h6>
 
       <div class="booking-actions">
-        <ul>
-          <li><%= link_to 'accept this booking', booking_path(@booking, {booking: {status: "accepted"}}), method: :patch %></li>
-          <li> <%= link_to 'decline this booking', booking_path(@booking, {booking: {status: "declined"}}), method: :patch %></li>
-        </ul>
-
-
+         <%= link_to booking_path(@booking, {booking: {status: "accepted"}}), method: :patch do %>
+          <i class="fas fa-check"></i>
+        <% end %>
+         <%= link_to booking_path(@booking, {booking: {status: "declined"}}), method: :patch do %>
+          <i class="fas fa-times"></i>
+        <% end %>
+        <%= link_to booking_path(@booking, {booking: {status: "pending"}}), method: :patch do %>
+          <i class="fas fa-question"></i>
+        <% end %>
       </div>
 
     <% elsif @booking.status == "declined" %>
 
-    <div class="booking-status">
-      <p>booking declined </p>
-    </div>
+    <h6><span class="booking">booking status: declined</span></h6>
 
-    <div class="booking-actions">
-      <%= link_to 'accept this booking', booking_path(@booking, {booking: {status: "accepted"}}), method: :patch %>
-      <%= link_to booking_path(@booking, {booking: {status: "pending"}}), method: :patch do %>
-      <i class="fas fa-question"></i>
-      <% end %>
-    </div>
+      <div class="booking-actions">
+         <%= link_to booking_path(@booking, {booking: {status: "accepted"}}), method: :patch do %>
+          <i class="fas fa-check"></i>
+        <% end %>
+        <%= link_to booking_path(@booking, {booking: {status: "pending"}}), method: :patch do %>
+          <i class="fas fa-question"></i>
+        <% end %>
+      </div>
 
     <% else @booking.status == "accepted" %>
+
       <h6><span class="booking">booking status: accepted</span></h6>
 
-    <div class="booking-actions">
-       <%= link_to booking_path(@booking, {booking: {status: "declined"}}), method: :patch do %>
-        <i class="fas fa-times"></i>
-      <% end %>
-      <%= link_to booking_path(@booking, {booking: {status: "pending"}}), method: :patch do %>
-        <i class="fas fa-question"></i>
-      <% end %>
-    </div>
+      <div class="booking-actions">
+         <%= link_to booking_path(@booking, {booking: {status: "declined"}}), method: :patch do %>
+          <i class="fas fa-times"></i>
+        <% end %>
+        <%= link_to booking_path(@booking, {booking: {status: "pending"}}), method: :patch do %>
+          <i class="fas fa-question"></i>
+        <% end %>
+      </div>
 
     <% end %>
 
