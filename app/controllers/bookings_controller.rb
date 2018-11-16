@@ -1,5 +1,7 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:edit, :update]
+  before_action :verify_dates, only: [:create]
+
   def index
     @bookings = policy_scope(Booking)
   end
@@ -23,12 +25,14 @@ class BookingsController < ApplicationController
     @booking.parking = @parking
     @booking.user = current_user
     authorize @booking
-    if @booking.save
+    # user should not be allowed to create/book the space if booking already exists
+    if verify_dates == true
+      flash[:alert] = "oops, this space is not available for those dates, dude."
+      render :new
+    else
+      @booking.save
       flash[:notice] = "great, you have successfully booked your parking space"
       redirect_to booking_path(@bookng)
-    else
-      flash[:alert] = "oops, this space is not available for that time, dude."
-      render :new
     end
   end
 
@@ -55,5 +59,10 @@ class BookingsController < ApplicationController
 
   def booking_params
     params.require(:booking).permit(:start_time, :finish_time)
+  end
+
+  def self.verify_dates(booking_params)
+    Booking.where('start_time < ? && finish_time > ?', self.start_time, self.finish_time)
+    booking.present?
   end
 end
