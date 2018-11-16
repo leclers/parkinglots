@@ -6,6 +6,12 @@
     <% @requested_bookings.each do |booking| %>
           <div class="booking-card">
             <%= booking.start_time %>
+            <%= booking.finish_time %>
+            <%= booking.status %>
+            <%= booking.parking_id %>
+            <%= booking.user_id %>
+            <%= booking.id %>
+
           </div>
     <% end %>
   </div>

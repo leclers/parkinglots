@@ -6,28 +6,29 @@ class BookingsController < ApplicationController
   end
 
   def new
-    @parking = Parking.find(params[:parking_id])
+    @parking = Parking.find(params[:id])
     @booking = Booking.new
+    authorize @parking
     authorize @booking
   end
 
   def show
-    @parking = Parking.find(params[:parking_id])
-    @booking = Booking.new
-    @bookings = policy_scope(Booking)
+    @parking = Parking.find(params[:id])
+    @booking = Booking.find(param[:id])
+    # @bookings = policy_scope(Booking)
     authorize @booking
   end
 
   # needs an if statement to not allow selecting dates that are not available
   def create
-    @parking = Parking.find(params[:parking_id])
+    @parking = Parking.find(param[:id])
     @booking = Booking.new(booking_params)
     @booking.parking = @parking
     @booking.user = current_user
     authorize @booking
     if @booking.save
       flash[:notice] = "great, you have successfully booked your parking space"
-      redirect_to booking_path(@bookng)
+      redirect_to booking_path(@booking)
     else
       flash[:alert] = "oops, this space is not available for that time, dude."
       render :new
