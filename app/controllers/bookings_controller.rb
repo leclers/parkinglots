@@ -13,8 +13,8 @@ class BookingsController < ApplicationController
   end
 
   def show
-    @parking = Parking.find(params[:id])
-    @booking = Booking.find(param[:id])
+    @booking = Booking.find(params[:id])
+    # @parking = Parking.find(params[:id])
     # @bookings = policy_scope(Booking)
     authorize @booking
   end
