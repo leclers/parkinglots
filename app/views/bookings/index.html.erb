@@ -19,19 +19,18 @@
 
     </ul>
 
-  <h4>Booking Requests for your parking</h4>
+  <h4>Booking Requests for your parking space</h4>
     <ul class="list-group">
-      <li class="list-group-item d-flex justify-content-between align-items-center">
         <% @own_parkings_bookings.each do |booking| %>
-      <%= booking.parking.user.email %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+      <%= booking.user.email %>
       <%= booking.parking.address %>
       <%= booking.start_time.strftime('%Y-%m-%d') %>
       <%= booking.finish_time.strftime('%Y-%m-%d') %>
       <%= link_to 'Details', booking_path(booking) %>
-      <span class="badge badge-primary badge-pill">14</span>
-
-      <% end %>
+      <span class="badge badge-primary badge-pill"><%= booking.status %></span>
       </li>
+      <% end %>
     </ul>
 
 </div>
