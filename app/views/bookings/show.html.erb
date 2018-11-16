@@ -1,2 +1,26 @@
-<h1>Bookings#show</h1>
-<p>Find me in app/views/bookings/show.html.erb</p>
+<div id="booking-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
+
+        <div id="booking-info">
+          <% if @booking.user == current_user %>
+          <!-- render the page for the user -->
+            <%= render "booking-user" %>
+
+          <% elsif @booking.parking.user == current_user %>
+          <!-- render the page for a parking owner -->
+            <%= render "booking-owner", {booking: @booking} %>
+
+          <% end %>
+
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
