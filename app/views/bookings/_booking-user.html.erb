@@ -1,3 +1,15 @@
+<div id="booking-header">
+  <h3>hi <%= current_user.email.split('@')[0] %></h3>
+  <h6 class="accent-header">great, your car found a place to stay!</h6>
+</div>
+
+<div id="booking-details">
+  <h6>here are the details of your booking</h6>
+  <p>request for: <%= @booking.parking.address %></p>
+  <p>from: <%= @booking.start_time.strftime("%Y/%m/%d") %> to <%= @booking.finish_time.strftime("%Y/%m/%d") %></p>
+  <p>total:<%= @booking.parking.price * (@booking.finish_time.day - @booking.start_time.day) %> $</p>
+</div>
+
 <div class="booking-renter-status">
   <% if @booking.status == "pending" %>
   <p class="booking-pending"><i class="fas fa-star"></i>pending</p>
