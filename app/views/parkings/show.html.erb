@@ -18,16 +18,10 @@
       <p><%= @parking.description %></p>
     </div> <!-- end of main-details -->
 
-    <!-- <div class="parking-dispo"> -->
-      <!-- <p>this place is available between</p> -->
-      <%#= @parking.start_time.strftime("%Y/%m/%d") %>
-      <%#= @parking.finish_time.strftime("%Y/%m/%d") %>
-    <!-- </div> end of parking-dispo -->
 
   <div id="parking-calendar">
 
     <%= calendar start_date: @parking.start_time, number_of_days: ((@parking.finish_time - @parking.start_time).to_f/86400).ceil, end_attribute: :finish_time, events: @parking.bookings do |date, bookings| %>
-      <%# raise %>
       <%= date.day %>
 
       <% bookings.each do |booking| %>

@@ -1,20 +1,24 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:edit, :update]
-  before_action :verify_dates, only: [:create]
+  # before_action :verify_dates, only: [:create]
+  # :verify_dates(booking_parrams) ????
 
   def index
-    @bookings = policy_scope(Booking)
+    @requested_bookings = policy_scope(Booking)
+    @own_parking_bookings = current_user.own_parkings_bookings
   end
 
   def new
-    @parking = Parking.find(params[:parking_id])
+    @parking = Parking.find(params[:id])
     @booking = Booking.new
+    authorize @parking
     authorize @booking
   end
 
   def show
-    @parking = Parking.find(params[:parking_id])
-    @booking = Booking.new
+    @parking = Parking.find(params[:id])
+    @booking = Booking.find(param[:id])
+    # @bookings = policy_scope(Booking)
     authorize @booking
   end
 
@@ -26,13 +30,14 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     authorize @booking
     # user should not be allowed to create/book the space if booking already exists
-    if verify_dates == true
-      flash[:alert] = "oops, this space is not available for those dates, dude."
-      render :new
-    else
+
+    if @booking.valid? && verify_dates(@booking, @parking)
       @booking.save
       flash[:notice] = "great, you have successfully booked your parking space"
-      redirect_to booking_path(@bookng)
+      redirect_to booking_path(@booking)
+    else
+      flash[:alert] = "oops, this space is not available for those dates, dude."
+      render :new
     end
   end
 
@@ -61,8 +66,21 @@ class BookingsController < ApplicationController
     params.require(:booking).permit(:start_time, :finish_time)
   end
 
-  def self.verify_dates(booking_params)
-    Booking.where('start_time < ? && finish_time > ?', self.start_time, self.finish_time)
-    booking.present?
+  # below gives undefined method: verify_dates Did you mean verify_authorized
+  def verify_dates(booking, parking)
+    if booking.start_time > parking.start_time && booking.finish_time < parking.finish_time
+      desired_booking = [(booking.start_time..booking.finish_time)]
+      existing_bookings = parking.bookings.map { |existing_bkng| (existing_bkng.start_time..existing_bkng.finish_time) }
+      array_of_ranges = desired_booking + existing_bookings
+      true unless Overlaps.find(array_of_ranges).empty?
+    end
+    false
   end
+  # def verify_dates
+  #   ('start_time, finish_time').overlaps?('start_time, finish_time')
+  # end
+
+  # def verify_dates
+
+  # end
 end
