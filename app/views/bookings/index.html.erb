@@ -5,13 +5,12 @@
   <div class="row">
     <% @requested_bookings.each do |booking| %>
           <div class="booking-card">
-            <%= booking.start_time %>
-            <%= booking.finish_time %>
-            <%= booking.status %>
-            <%= booking.parking_id %>
-            <%= booking.user_id %>
-            <%= booking.id %>
-
+            <p><%= booking.start_time %></p>
+            <p><%= booking.finish_time %></p>
+            <p><%= booking.status %></p>
+            <p><%= booking.parking_id %></p>
+            <p><%= booking.user_id %></p>
+            <p><%= booking.id %></p>
           </div>
     <% end %>
   </div>
