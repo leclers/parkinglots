@@ -1,74 +1,83 @@
-<div class="parking-title">
-  <h3>beautiful space in
-    <% if @parking.city.nil? %>
-      Montréal
-    <% else %>
-      <%= @parking.city %>
-    <% end %>
-    </h3>
-</div>
+<div class="container-fluid">
 
-<div class="parking-content">
-
-  <div class="parking-description">
-    <div class="main-details">
-
-      <p><%= @parking.address %></p>
-      <p><%= @parking.user.email %></p>
-      <p><%= @parking.description %></p>
-    </div> <!-- end of main-details -->
-
-
-  <div id="parking-calendar">
-
-    <%= calendar start_date: @parking.start_time, number_of_days: ((@parking.finish_time - @parking.start_time).to_f/86400).ceil, end_attribute: :finish_time, events: @parking.bookings do |date, bookings| %>
-      <%= date.day %>
-
-      <% bookings.each do |booking| %>
-        <div>
-          X
-        </div>
-      <% end %>
-    <% end %>
-
-  </div>
-
-    <div class="parking-image">
-      <% if @parking.photo.nil?  %>
-        <%= image_tag "http://bit.ly/2PUFPFK" %>
+  <div class="parking-title">
+    <h3>beautiful space in
+      <% if @parking.city.nil? %>
+        Montréal
       <% else %>
-        <%= cl_image_tag @parking.photo, crop: :fill %>
+        <%= @parking.city %>
       <% end %>
-    </div> <!-- end of parking-image-->
-
-    <div class="parking-actions">
-      <% if policy(@parking).edit? && policy(@parking).destroy? %>
-      <ul>
-        <%= link_to 'edit', edit_parking_path(@parking), class: 'btn btn-info' %>
-        <%= link_to 'delete', parking_path(@parking), method: :delete, class: 'btn btn-info' %>
-      </ul>
-        <%= link_to 'see all the bookings for this space', '#', class: 'btn btn-info' %>
-        <% else %>
-          <%= simple_form_for([@parking, @booking]) do |f| %>
-          <%= f.input :start_time, label: "start date", as: :datepicker  %>
-          <%= f.input :finish_time, label: "end date", as: :datepicker%>
-
-          <%= f.submit class: 'btn btn-light full-width', value: "Book now" %>
-          <% end %>
-      <% end %>
-    </div> <!-- end of parking-actions -->
-  </div> <!-- end of parking-description -->
-
-  <div id="map-wrapper">
-    <div
-      id="map-show"
-      data-marker="<%= @marker.to_json %>"
-    ></div>
+      </h3>
   </div>
 
+  <div class="parking-content">
 
-</div> <!-- end of parking content -->
+    <div class="parking-description">
 
+      <div class="main-details">
+        <h6><span class="booking">adress:</span></h6>
+        <p><%= @parking.address %></p>
+
+        <h6><span class="booking">owned by:</span></h6>
+        <p><%= @parking.user.email.split('@')[0] %></p>
+
+        <h6><span class="booking">description: </span></h6>
+
+        <p><%= @parking.description %></p>
+      </div> <!-- end of main-details -->
+
+      <div id="parking-calendar">
+
+        <h6><span class="booking">availability:</span></h6>
+
+        <%= calendar start_date: @parking.start_time, number_of_days: ((@parking.finish_time - @parking.start_time).to_f/86400).ceil, events: @parking.bookings do |date, bookings| %>
+          <%= date.day %>
+          <% bookings.each do |booking| %>
+            <p>x</p>
+          <% end %>
+        <% end %>
+
+      </div>
+
+      <div class="parking-image">
+        <% if @parking.photo.nil?  %>
+          <%= image_tag "http://bit.ly/2PUFPFK" %>
+        <% else %>
+          <%= cl_image_tag @parking.photo, crop: :fill %>
+        <% end %>
+      </div> <!-- end of parking-image-->
+
+      <div class="parking-actions">
+        <% if policy(@parking).edit? && policy(@parking).destroy? %>
+        <ul>
+          <%= link_to 'edit', edit_parking_path(@parking), class: 'btn btn-info' %>
+          <%= link_to 'delete', parking_path(@parking), method: :delete, class: 'btn btn-info' %>
+        </ul>
+          <%= link_to 'see all the bookings for this space', '#', class: 'btn btn-info' %>
+          <% else %>
+            <%= simple_form_for([@parking, @booking]) do |f| %>
+            <%= f.input :start_time, label: "start date", as: :datepicker  %>
+            <%= f.input :finish_time, label: "end date", as: :datepicker%>
+
+            <%= f.submit class: 'btn btn-light full-width', value: "Book now" %>
+            <% end %>
+        <% end %>
+      </div> <!-- end of parking-actions -->
+
+    </div> <!-- end of parking-description -->
+
+    <div id="map-wrapper">
+      <div
+        id="map-show"
+        data-marker="<%= @marker.to_json %>"
+      ></div>
+    </div>
+
+
+  </div> <!-- end of parking content -->
+
+
+</div>
 
 
 
