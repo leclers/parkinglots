@@ -15,7 +15,7 @@
     <div class="parking-description">
 
       <div class="main-details">
-        <h6><span class="booking">adress:</span></h6>
+        <h6><span class="booking">address:</span></h6>
         <p><%= @parking.address %></p>
 
         <h6><span class="booking">owned by:</span></h6>
@@ -39,14 +39,6 @@
 
       </div>
 
-      <div class="parking-image">
-        <% if @parking.photo.nil?  %>
-          <%= image_tag "http://bit.ly/2PUFPFK" %>
-        <% else %>
-          <%= cl_image_tag @parking.photo, crop: :fill %>
-        <% end %>
-      </div> <!-- end of parking-image-->
-
       <div class="parking-actions">
         <% if policy(@parking).edit? && policy(@parking).destroy? %>
         <ul>
@@ -63,6 +55,15 @@
             <% end %>
         <% end %>
       </div> <!-- end of parking-actions -->
+
+
+      <div class="parking-image">
+        <% if @parking.photo.nil?  %>
+          <%= image_tag "http://bit.ly/2PUFPFK" %>
+        <% else %>
+          <%= cl_image_tag @parking.photo, crop: :fill %>
+        <% end %>
+      </div> <!-- end of parking-image-->
 
     </div> <!-- end of parking-description -->
 
