@@ -18,20 +18,23 @@
       <p><%= @parking.description %></p>
     </div> <!-- end of main-details -->
 
+    <div class="parking-dispo">
+      <p>available to book through</p>
+      <p><%= @parking.start_time.strftime("%Y/%m/%d") %> <%= @parking.finish_time.strftime("%Y/%m/%d") %></p>
+    </div>
+    <!-- end of parking-dispo -->
 
-  <div id="parking-calendar">
-
-    <%= calendar start_date: @parking.start_time, number_of_days: ((@parking.finish_time - @parking.start_time).to_f/86400).ceil, end_attribute: :finish_time, events: @parking.bookings do |date, bookings| %>
-      <%= date.day %>
-
-      <% bookings.each do |booking| %>
+  <div class="col-sm-12" id="parking-calendar">
         <div>
-          X
-        </div>
-      <% end %>
-    <% end %>
+          <%= simple_form_for([@parking, @booking]) do |f| %>
+          <%= f.input :start_time, label: "start date", as: :datepicker, input_html: { autocomplete: 'off' } %>
+          <%= f.input :finish_time, label: "end date", as: :datepicker, input_html: { autocomplete: 'off' } %>
 
+          <%= f.submit class: 'btn btn-primary full-width', value: "book this space" %>
+          <% end %>
+        </div>
   </div>
+
 
     <div class="parking-image">
       <% if @parking.photo.nil?  %>
@@ -49,12 +52,7 @@
       </ul>
         <%= link_to 'see all the bookings for this space', '#', class: 'btn btn-info' %>
         <% else %>
-          <%= simple_form_for([@parking, @booking]) do |f| %>
-          <%= f.input :start_time, label: "start date", as: :datepicker  %>
-          <%= f.input :finish_time, label: "end date", as: :datepicker%>
-
-          <%= f.submit class: 'btn btn-light full-width', value: "Book now" %>
-          <% end %>
+        <%= link_to 'book this space', new_parking_booking_path(@parking), class: 'btn btn-primary' %>
       <% end %>
     </div> <!-- end of parking-actions -->
   </div> <!-- end of parking-description -->
@@ -68,7 +66,6 @@
 
 
 </div> <!-- end of parking content -->
-
 
 
 

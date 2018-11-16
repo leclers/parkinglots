@@ -85,4 +85,9 @@ $alert-border-radius: 0px;
 
 // Override other variables below!
 
+.ui-datepicker {
+  width: auto;
+  padding: .2em .2em 0;
+  display: none;
+}
 
