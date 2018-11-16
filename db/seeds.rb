@@ -55,16 +55,5 @@ Parking.create(
   remote_photo_url: "https://cdn.vox-cdn.com/thumbor/XPpD9_FRhv02FWwxbvnKxcZesUc=/0x0:3600x2400/1200x800/filters:focal(1512x912:2088x1488)/cdn.vox-cdn.com/uploads/chorus_image/image/58321331/shutterstock_36463816.0.jpg"
 )
 
-users = User.all
-parkings = Parking.all
-
-4.times do
-  Booking.create({
-    user_id: users.sample(1)[0].id,
-    parking_id: parkings.sample(1)[0].id,
-    start_time: Time.new(2018, 11, 10),
-    finish_time: Time.new(2018, 11, 11),
-  })
-end
 
 puts "all finished, cool"
