@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:edit, :update]
+
   def index
     @requested_bookings = policy_scope(Booking)
     @own_parkings_bookings = current_user.own_parkings_bookings
@@ -13,15 +14,18 @@ class BookingsController < ApplicationController
   end
 
   def show
+<<<<<<< HEAD
     #@parking = Parking.find(params[:id])
     @booking = Booking.find(params[:id])
     # @bookings = policy_scope(Booking)
+=======
+    @booking = Booking.find(params[:id])
+>>>>>>> b851d22047d0137f8aa8d248c23161d6694b7875
     authorize @booking
   end
 
-  # needs an if statement to not allow selecting dates that are not available
   def create
-    @parking = Parking.find(param[:id])
+    @parking = Parking.find(params[:parking_id])
     @booking = Booking.new(booking_params)
     @booking.parking = @parking
     @booking.user = current_user
@@ -41,12 +45,14 @@ class BookingsController < ApplicationController
 
   def update
     authorize @booking
-    if @booking.update(booking_params)
-      flash[:notice] = "successfully edited your booking"
-      redirect_to parking_path(@parking)
+    if @booking.update(booking_params) && @booking.status == "accepted"
+      flash[:notice] = "booking accepted"
+      redirect_to booking_path(@booking)
+    elsif @booking.update(booking_params) && @booking.status == "declined"
+      flash[:alert] = "booking rejected"
+      redirect_to booking_path(@booking)
     else
-      flash[:alert] = "oops, something is wrong, dude."
-      render :edit
+      render :show
     end
   end
 
@@ -57,6 +63,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:start_time, :finish_time)
+    params.require(:booking).permit(:start_time, :finish_time, :status)
   end
 end

@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_14_160724) do
+ActiveRecord::Schema.define(version: 2018_11_16_153619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bookings", force: :cascade do |t|
-    t.string "status"
+    t.string "status", default: "pending"
     t.datetime "start_time"
     t.datetime "finish_time"
     t.datetime "created_at", null: false
@@ -25,12 +25,6 @@ ActiveRecord::Schema.define(version: 2018_11_14_160724) do
     t.bigint "parking_id"
     t.index ["parking_id"], name: "index_bookings_on_parking_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
-  end
-
-  create_table "geoparkings", force: :cascade do |t|
-    t.string "address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "parkings", force: :cascade do |t|

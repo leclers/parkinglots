@@ -1,0 +1,40 @@
+<div id="booking-header">
+  <h3>hi <%= current_user.email.split('@')[0] %></h3>
+  <h6 class="accent-header">great, your car found a place to stay!</h6>
+</div>
+
+<div id="booking-details">
+
+
+  <h6>here are the details of your booking</h6>
+
+  <h6><span class="booking">request for:</span></h6>
+  <p><%= @booking.parking.address %></p>
+
+  <h6><span class="booking">from:</span></h6>
+  <p>from: <%= @booking.start_time.strftime("%Y/%m/%d") %> to <%= @booking.finish_time.strftime("%Y/%m/%d") %></p>
+
+  <h6><span class="booking">total:</span></h6>
+  <p><%= @booking.parking.price * (@booking.finish_time.day - @booking.start_time.day) %> $</p>
+
+</div>
+
+<div class="booking-renter-status">
+  <% if @booking.status == "pending" %>
+    <h6><span class="booking">booking status: pending</span></h6>
+<!--   <p class="booking-pending"><i class="fas fa-star"></i>pending</p> -->
+
+  <% elsif @booking.status == "declined" %>
+  <h6><span class="booking">booking status: declined</span></h6>
+<!--   <p class="booking-declined"><i class="fas fa-times"></i>not okay</p> -->
+
+  <% else @booking.status == "accepted" %>
+  <h6><span class="booking">booking status: accepted</span></h6>
+  <!-- <p class="booking-accepted"><i class="fas fa-check"></i>okay</p> -->
+
+  <% end %>
+
+</div>
+
+
+
