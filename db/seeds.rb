@@ -41,7 +41,7 @@ Parking.create(
   start_time: Time.now,
   finish_time: Time.now + 10,
   price: 95,
-  remote_photo_url: "http://seloc-am.org/cms-files/56e6/56e69343332a2.jpg"
+  remote_photo_url: "https://i.ebayimg.com/00/s/NDMxWDEwMjQ=/z/S6sAAOSw~19bK2sK/$_86.JPG"
 )
 
 Parking.create(
