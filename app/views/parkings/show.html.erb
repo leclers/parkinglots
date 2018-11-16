@@ -15,16 +15,23 @@
     <div class="parking-description">
 
       <div class="main-details">
+        <h6><span class="booking">adress:</span></h6>
         <p><%= @parking.address %></p>
-        <p><%= @parking.user.email %></p>
+
+        <h6><span class="booking">owned by:</span></h6>
+        <p><%= @parking.user.email.split('@')[0] %></p>
+
+        <h6><span class="booking">description: </span></h6>
+
         <p><%= @parking.description %></p>
       </div> <!-- end of main-details -->
 
       <div id="parking-calendar">
 
-        <%= calendar start_date: @parking.start_time, number_of_days: ((@parking.finish_time - @parking.start_time).to_f/86400).ceil, end_attribute: :finish_time, events: @parking.bookings do |date, bookings| %>
-          <%= date.day %>
+        <h6><span class="booking">availability:</span></h6>
 
+        <%= calendar start_date: @parking.start_time, number_of_days: ((@parking.finish_time - @parking.start_time).to_f/86400).ceil, events: @parking.bookings do |date, bookings| %>
+          <%= date.day %>
           <% bookings.each do |booking| %>
             <p>x</p>
           <% end %>
