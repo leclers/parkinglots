@@ -7,18 +7,22 @@
 
 .parking-content {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
 .parking-description {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
   align-self: center;
-  text-align: right;
+  text-align: left;
 }
 
 .parking-image {
   img {
-    height: 400px;
+    // height: 400px;
+    width: 100%;
   }
 }
 
@@ -28,12 +32,12 @@
 }
 
 #map-wrapper {
-  flex: 0 0 50%;
+  flex: 0 0 60%;
 }
 
 #map-show {
-  width: 100%;
-  height: 90vh;
+  // width: 100%;
+  height: 100vh;
   margin: auto;
 }
 
