@@ -3,7 +3,7 @@ class BookingsController < ApplicationController
 
   def index
     @requested_bookings = policy_scope(Booking)
-    @own_parking_bookings = current_user.own_parkings_bookings
+    @own_parkings_bookings = current_user.own_parkings_bookings
   end
 
   def new

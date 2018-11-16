@@ -1,18 +1,37 @@
-<h3> All Your Bookings</h3>
 
 <div class="container">
+  <h1> Your Parking Rental Bookings</h1>
+  <h4>My requests</h4>
+  <ul class="list-group">
 
-  <div class="row">
-    <% @requested_bookings.each do |booking| %>
-          <div class="booking-card">
-            <%= booking.start_time %>
-            <%= booking.finish_time %>
-            <%= booking.status %>
-            <%= booking.parking_id %>
-            <%= booking.user_id %>
-            <%= booking.id %>
-
-          </div>
+      <% @requested_bookings.each do |booking| %>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <%= booking.parking.user.email %>
+      <%= booking.parking.address %>
+      <%= booking.start_time.strftime('%Y-%m-%d') %>
+      <%= booking.finish_time.strftime('%Y-%m-%d') %>
+      <%= link_to 'Details', booking_path(booking) %>
+      <span class="badge badge-primary badge-pill">
+        <%= booking.status %>
+      </span>
     <% end %>
-  </div>
+    </li>
+
+    </ul>
+
+  <h4>Booking Requests for your parking</h4>
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <% @own_parkings_bookings.each do |booking| %>
+      <%= booking.parking.user.email %>
+      <%= booking.parking.address %>
+      <%= booking.start_time.strftime('%Y-%m-%d') %>
+      <%= booking.finish_time.strftime('%Y-%m-%d') %>
+      <%= link_to 'Details', booking_path(booking) %>
+      <span class="badge badge-primary badge-pill">14</span>
+
+      <% end %>
+      </li>
+    </ul>
+
 </div>
